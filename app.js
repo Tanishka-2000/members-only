@@ -7,6 +7,14 @@ const LocalStrategy = require('passport-local');
 
 const indexRouter = require('./routes/indexRouter.js');
 
+mongoose.set('strictQuery', true);
+const dev_db_url = 'mongodb+srv://tanishka-2:library@cluster0.9obhjki.mongodb.net/secrets?retryWrites=true&w=majority';
+const mongoDB = process.env.MONGODB_URI || dev_db_url;
+mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true});
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'Mongodb connection error'));
+
+
 const app = express();
 
 // setting view engine
@@ -24,12 +32,13 @@ app.use('/', indexRouter);
 app.use(function(req, res, next) {
     const error = new Error('page not found!');
     error.status = 404;
-    next(err);
+    next(error);
 });
 
 // rendering error page
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
+  res.locals.status = err.status;
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
