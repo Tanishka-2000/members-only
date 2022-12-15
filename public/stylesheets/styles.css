@@ -1,0 +1,139 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+nav{
+  display: flex;
+  align-items: center;
+  padding: 10px 20%;
+  font-size: 1.5rem;
+  box-shadow: 0 2px 5px 3px #ddd;
+}
+nav .logo{
+  margin-right: auto;
+}
+nav .logo .material-symbols-outlined{
+  font-size: 2rem;
+}
+nav li{
+  list-style: none;
+  margin: 0 10px;
+}
+nav li a{
+  text-decoration: none;
+  color: #FF597B;
+}
+nav li:not(.logo) a:hover{
+  /* color: #FF8E9E; */
+  text-decoration: underline;
+}
+/* compose button */
+.compose{
+  position: fixed;
+  top: 80px;
+  right:60px;
+  z-index: 1;
+  color: #FF597B;
+  border: 1px solid #FF597B;
+  border-radius: 50%;
+  padding: 10px;
+}
+/* container */
+
+.container{
+  padding: 70px 20%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-gap: 30px;
+  font-size: 1.2rem;
+}
+.container .message{
+  box-shadow: 2px 2px 5px 3px #ddd;
+  border-radius: 5px;
+  position: relative;
+}
+.container :is(.image, img){
+ border-top-left-radius: 5px;
+ border-top-right-radius: 5px;
+}
+
+.container .message .image{
+  width: 100%;
+  height: 300px;
+}
+.container .message .image img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: bottom;
+}
+.container .message .text{
+  padding: 15px;
+}
+.container .message .text h2{
+  margin: 8px 0;
+}
+.container .message .info{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0;
+  font-weight: 100;
+}
+.container .message .delete, button{
+  display: inline-block;
+  background-color: white;
+  border:1px solid #FF597B;
+  color: #FF597B;
+  text-decoration: none;
+  border-radius: 5px;
+  padding: 8px 15px;
+  font-size: 1.2rem;
+  margin: 5px 0;
+}
+.container .message .delete:hover,
+button:hover{
+  background-color: #FF597B;
+  color: white;
+}
+
+/* form style */
+.center{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}
+.form-heading{
+  text-align: center;
+  color: #FF597B;
+  margin: 50px;
+}
+form{
+  width: 90%;
+  padding: 50px;
+  font-size: 1.5rem;
+  border: 1px solid #FF597B;
+  border-radius: 8px;
+  margin: 50px 0;
+}
+form .form-group{
+  width: 100%;
+  margin: 20px 0;
+}
+
+input, label, textarea{
+  display: block;
+  width: 100%;
+  color: #FF597B;
+  font-size: 1.5rem;
+}
+input, textarea{
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #FF597B;
+  color: #FF8E9E;
+  font-weight: 100;
+}
+
