@@ -2,8 +2,6 @@ const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
 const session = require('express-session');
-const passport = require('passport');
-const LocalStrategy = require('passport-local');
 
 const indexRouter = require('./routes/indexRouter.js');
 
@@ -21,10 +19,15 @@ const app = express();
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs');
 
+// parse form data to js object
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname, 'public')));
 
+// setting pasport midleware
+
+
+// handle routing
 app.use('/', indexRouter);
 
 
