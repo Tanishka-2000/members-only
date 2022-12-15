@@ -1,12 +1,14 @@
+require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
 const session = require('express-session');
+const passport = require('passport');
 
 const indexRouter = require('./routes/indexRouter.js');
 
 mongoose.set('strictQuery', true);
-const dev_db_url = 'mongodb+srv://tanishka-2:library@cluster0.9obhjki.mongodb.net/secrets?retryWrites=true&w=majority';
+const dev_db_url = process.env.MONGODBURL;
 const mongoDB = process.env.MONGODB_URI || dev_db_url;
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true});
 const db = mongoose.connection;
@@ -25,7 +27,13 @@ app.use(express.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // setting pasport midleware
-
+app.use(session({
+    secret: process.env.SECRET,
+    resave: false,
+    saveUninitialized: true,
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 
 // handle routing
 app.use('/', indexRouter);
@@ -41,6 +49,7 @@ app.use(function(req, res, next) {
 // rendering error page
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
+  console.log(err);
   res.locals.status = err.status;
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
