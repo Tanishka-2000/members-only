@@ -1,13 +1,30 @@
 <%- include('partials/header') %>
-<nav>
-  <li class="logo"><a href="/"><span class="material-symbols-outlined">house</span>Secrets</a></li>
-  <li><a href="/log-in">Log In</a></li>
-  <li><a href="/sign-in">Sign In</a></li>
-</nav>
+
 <a class="compose" href="/createStory"><span class="material-symbols-outlined">edit</span></a>
 <div class="container">
-
-  <div class="message">
+  <% messages.forEach(message => { %>
+      <div class="message">
+        <div class="image">
+          <img src=<%= `/data/uploads/${message.img}` %> alt="">
+        </div>
+        <div class="text">
+          <h2><%= message.title %></h2>
+          <p><%= message.msg %></p>
+          <% if(currentUser && currentUser.isMember){ %>
+              <div class="info">
+                <p><strong>Sarah Doe</strong></p>
+                <p><em>8th august 2022</em></p>
+              </div>
+          <% } %>
+           <% if(currentUser && currentUser.isAdmin){ %>
+               <a class='delete' href=<%= `/story/${message._id}/delete` %>>delete</a>
+          <% } %>
+        </div>
+      </div>
+  <% }) %>
+</div>
+<%- include('partials/footer') %>
+  <!-- <div class="message">
     <div class="image">
       <img src="images/vacation1.jpg" alt="">
     </div>
@@ -77,6 +94,4 @@
       </div>
       <a class='delete' href="/delete">delete</a>
     </div>
-  </div>
-</div>
-<%- include('partials/footer') %>
+  </div> -->

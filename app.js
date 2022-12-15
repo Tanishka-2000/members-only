@@ -30,11 +30,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
     secret: process.env.SECRET,
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
 }));
 app.use(passport.initialize());
 app.use(passport.session());
 
+
+app.use((req, res, next) => {
+    res.locals.currentUser = req.user;
+    next();
+});
 // handle routing
 app.use('/', indexRouter);
 

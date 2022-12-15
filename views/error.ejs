@@ -1,15 +1,9 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-    <head>
-        <meta charset="utf-8">
-        <title></title>
-        <link rel="stylesheet" href="stylesheets/error.css">
-    </head>
-    <body>
-        <div class="error">
-            <h1><%= status %></h1>
-            <h2><%= message %></h2>
-            <p class="attribute"><a href="https://www.freepik.com/free-vector/internet-network-warning-404-error-page-file-found-web-page_16304926.htm#query=error&position=18&from_view=search&track=sph">Image by jcomp</a> on Freepik</p>
-        </div>
-    </body>
-</html>
+<%- include('partials/header') %>
+
+    <div class="error">
+        <h1><%= status %></h1>
+        <h2><%= message %></h2>
+        <p class="attribute"><a href="https://www.freepik.com/free-vector/internet-network-warning-404-error-page-file-found-web-page_16304926.htm#query=error&position=18&from_view=search&track=sph">Image by jcomp</a> on Freepik</p>
+    </div>
+
+<%- include('partials/footer') %>

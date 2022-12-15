@@ -112,15 +112,15 @@ button:hover{
 .form-heading{
   text-align: center;
   color: #FF597B;
-  margin: 50px;
+  margin: 20px;
 }
 form{
   width: 90%;
-  padding: 50px;
+  padding: 30px 50px;
   font-size: 1.5rem;
   border: 1px solid #FF597B;
   border-radius: 8px;
-  margin: 50px 0;
+  margin: 20px 0;
 }
 form .form-group{
   width: 100%;
@@ -140,7 +140,15 @@ input, textarea{
   color: #FF8E9E;
   font-weight: 100;
 }
-
+/* errors */
+.errors{
+    width: 90%;
+    color: #FF597B;
+    font-size: 1.4rem;
+}
+.errors li{
+    margin: 10px 0;
+}
 /* footer */
 footer{
     background-color: #FF597B;

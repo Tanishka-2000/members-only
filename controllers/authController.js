@@ -2,6 +2,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const bcrypt = require('bcryptjs');
 const User = require('../models/user.js');
+const Message = require('../models/message.js');
 const {body, validationResult} = require('express-validator');
 
 const multer  = require('multer');
@@ -33,8 +34,18 @@ passport.deserializeUser(function(id, done){
 });
 
 // -----------routes-----------
+exports.getStories = (req, res) => {
+    Message.find()
+    .populate('user')
+    .exec(function(err, messages){
+        if(err) return next(err);
+        res.render('index', {messages});
+    });
+};
+
 exports.getLogInForm = (req, res) => {
-    res.render('log-in')
+    console.log(req.session.messages);
+    res.render('log-in', {errors: req.session.messages});
 };
 
 exports.logInUser = passport.authenticate('local', {
@@ -88,7 +99,6 @@ exports.signInUser = [
     (req, res, next) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
-            console.log(errors.array());
             res.render('sign-in', {errors: errors.array(), user: req.body})
             return;
         }
@@ -131,6 +141,10 @@ exports.createStory = [
         });
     }
 ];
+
+exports.deleteStory = (req, res) => {
+
+};
 
 exports.getMemberLogInForm = (req, res) => {
     res.render('member-log-in');

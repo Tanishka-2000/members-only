@@ -2,9 +2,7 @@ const express = require('express');
 const router = express.Router();
 const auth = require('../controllers/authController.js');
 
-router.get('/', function (req, res) {
-    res.render('index');
-});
+router.get('/', auth.getStories);
 
 router.get('/log-in', auth.getLogInForm);
 
@@ -17,6 +15,8 @@ router.post('/sign-in', auth.signInUser);
 router.get('/createStory', auth.getCreateStoryForm);
 
 router.post('/createStory', auth.createStory);
+
+router.post('/story/:id/delete', auth.deleteStory);
 
 router.get('/member-log-in', auth.getMemberLogInForm);
 
