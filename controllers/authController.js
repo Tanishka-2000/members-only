@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs');
 const User = require('../models/user.js');
 const {body, validationResult} = require('express-validator');
 
+// ----------passport set up-----------
 passport.use(new LocalStrategy(
     function (username, password, done) {
         User.findOne({username: username}, function(err, user) {
@@ -27,15 +28,18 @@ passport.deserializeUser(function(id, done){
     });
 });
 
+// -----------routes-----------
 exports.getLogInForm = (req, res) => {
     res.render('log-in')
 };
 
 exports.logInUser = passport.authenticate('local', {
-    successRedirect: '/createStory',
     failureRedirect: '/log-in',
+    successRedirect: '/createStory',
     failureMessage: true
-});
+    },
+
+);
 
 exports.getSignInForm = (req, res) => {
     res.render('sign-in', {user: null, errors: null});
@@ -99,12 +103,13 @@ exports.signInUser = [
                 res.render('log-in');
             });
         });
-    }    
+    }
 ];
 
 exports.getCreateStoryForm = (req, res) => {
-    res.render('compose');
-
+    console.log(req.user);
+    if(req.user) res.render('compose');
+    else res.redirect('/log-in');
 };
 
 exports.createStory = (req, res) => {
