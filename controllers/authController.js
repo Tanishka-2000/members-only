@@ -4,6 +4,10 @@ const bcrypt = require('bcryptjs');
 const User = require('../models/user.js');
 const {body, validationResult} = require('express-validator');
 
+const multer  = require('multer');
+const upload = multer({ dest: './public/data/uploads/'});
+const fs = require('fs');
+
 // ----------passport set up-----------
 passport.use(new LocalStrategy(
     function (username, password, done) {
@@ -38,7 +42,6 @@ exports.logInUser = passport.authenticate('local', {
     successRedirect: '/createStory',
     failureMessage: true
     },
-
 );
 
 exports.getSignInForm = (req, res) => {
@@ -112,9 +115,22 @@ exports.getCreateStoryForm = (req, res) => {
     else res.redirect('/log-in');
 };
 
-exports.createStory = (req, res) => {
-
-};
+exports.createStory = [
+    upload.single('image'),
+    (req, res) => {
+        const message = new Message({
+            title: req.body.title,
+            msg: req.body.msg,
+            img: req.file ? req.file.filename : '',
+            timestamp: new Date(),
+            user: req.user.id
+        });
+        message.save(err => {
+            if(err) return next(err);
+            res.redirect('/');
+        });
+    }
+];
 
 exports.getMemberLogInForm = (req, res) => {
     res.render('member-log-in');
