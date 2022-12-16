@@ -1,44 +1,30 @@
 <%- include('partials/header') %>
 
-<a class="compose" href="/createStory"><span class="material-symbols-outlined">edit</span></a>
-<div class="container">
-  <% messages.forEach(message => { %>
-      <div class="message">
-        <div class="image">
-          <img src=<%= `/data/uploads/${message.img}` %> alt="">
-        </div>
-        <div class="text">
-          <h2><%= message.title %></h2>
-          <p><%= message.msg %></p>
-          <% if(currentUser && currentUser.isMember){ %>
-              <div class="info">
-                <p><strong><%= `${message.user.firstName} ${message.user.lastName}` %></strong></p>
-                <p><em><%= message.timestamp.toDateString() %></em></p>
-              </div>
-          <% } %>
-           <% if(currentUser && currentUser.isAdmin){ %>
-               <form class="no-border" action=<%= `/story/${message._id}/delete` %> method="post">
-                   <button type="submit">delete</button>
-               </form>
-          <% } %>
-        </div>
-      </div>
-  <% }) %>
-</div>
+<% if(currentUser) {%>
+    <a class="compose" href="/createStory"><span class="material-symbols-outlined">edit</span></a>
+<% } %>
+    <div class="container">
+      <% messages.forEach(message => { %>
+          <div class="message">
+            <div class="image">
+              <img src=<%= `/data/uploads/${message.img}` %> alt="">
+            </div>
+            <div class="text">
+              <h2><%= message.title %></h2>
+              <p><%= message.msg %></p>
+              <% if(currentUser && currentUser.isMember){ %>
+                  <div class="info">
+                    <p><strong><%= `${message.user.firstName} ${message.user.lastName}` %></strong></p>
+                    <p><em><%= message.timestamp.toDateString() %></em></p>
+                  </div>
+              <% } %>
+               <% if(currentUser && currentUser.isAdmin){ %>
+                   <form class="no-border" action=<%= `/story/${message._id}/delete` %> method="post">
+                       <button type="submit">delete</button>
+                   </form>
+              <% } %>
+            </div>
+          </div>
+      <% }) %>
+    </div>
 <%- include('partials/footer') %>
-  <!-- <div class="message">
-    <div class="image">
-      <img src="images/vacation1.jpg" alt="">
-    </div>
-    <div class="text">
-      <h2>Vacation</h2>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat, quo repudiandae. Consectetur quo quidem eligendi inventore, tempora atque. Facilis voluptas voluptates quibusdam impedit nisi distinctio illum s</p>
-      <div class="info">
-        <p><strong>Sarah Doe</strong></p>
-        <p><em>8th august 2022</em></p>
-      </div>
-      <a class='delete' href="/delete">delete</a>
-    </div>
-  </div>
-
-  </div> -->
