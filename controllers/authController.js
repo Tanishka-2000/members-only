@@ -147,14 +147,14 @@ exports.deleteStory = (req, res) => {
 };
 
 exports.getMemberLogInForm = (req, res) => {
-    if(req.member) console.log(req.member.error);
-    if(!req.user) res.redirect('/log-in');
-    else res.render('member-log-in');
+    if(!req.user) return res.redirect('/log-in');
+    res.render('member-log-in');
 };
 
 exports.logInMember = (req, res) => {
+
     if(!req.user) res.redirect('/log-in');
-    console.log({your: req.body.memberCode, real:process.env.MEMBER_CODE});
+
     if(req.body.memberCode === process.env.MEMBER_CODE){
         let user = new User({
             firstName: req.user.firstName,
@@ -168,16 +168,32 @@ exports.logInMember = (req, res) => {
             res.redirect('/');
         });
     }else{
-        req.member.error = 'Incorrect Password!'
         res.redirect('/member-log-in');
     }
 };
 
 exports.getAdminLogInForm = (req, res) => {
+    if(!req.user) return res.redirect('/log-in');
     res.render('admin-log-in');
-
 };
 
 exports.logInAdmin = (req, res) => {
-
+    if(!req.user) res.redirect('/log-in');
+    
+    console.log({your: req.body.adminCode, real: process.env.ADMIN_CODE});
+    if(req.body.adminCode === process.env.ADMIN_CODE){
+        let user = new User({
+            firstName: req.user.firstName,
+            lastName: req.user.lastName,
+            username: req.user.username,
+            isMember: req.user.isMember,
+            isAdmin: true,
+            _id: req.user._id
+        });
+        User.findByIdAndUpdate(req.user._id, user, {}, (err, user) => {
+            res.redirect('/');
+        });
+    }else {
+        res.redirect('/admin-log-in');
+    }
 };

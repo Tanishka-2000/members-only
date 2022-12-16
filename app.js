@@ -44,12 +44,12 @@ app.use((req, res, next) => {
 app.use('/', indexRouter);
 
 
-// creating page not found error
-app.use(function(req, res, next) {
-    const error = new Error('page not found!');
-    error.status = 404;
-    next(error);
-});
+// // creating page not found error
+// app.use(function(req, res, next) {
+//     const error = new Error('page not found!');
+//     error.status = 404;
+//     next(error);
+// });
 
 // rendering error page
 app.use(function(err, req, res, next) {
