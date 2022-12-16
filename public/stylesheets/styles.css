@@ -37,6 +37,17 @@ nav li:not(.logo) a:hover{
   /* color: #FF8E9E; */
   text-decoration: underline;
 }
+form.log-out{
+    border: none;
+    width: 120px;
+    margin: 0;
+    padding: 0;
+}
+button.log-out{
+    border: none;
+    padding: none;
+    margin-left: 20px;
+}
 /* compose button */
 .compose{
   position: fixed;

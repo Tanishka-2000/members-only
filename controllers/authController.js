@@ -55,6 +55,16 @@ exports.logInUser = passport.authenticate('local', {
     },
 );
 
+exports.logOutUser = (req, res, next) => {
+    if(!req.user) res.redirect('/');
+    else{
+        req.logout(function(err){
+            if(err) return next(err);
+            res.redirect('/')
+        });
+    }
+};
+
 exports.getSignInForm = (req, res) => {
     res.render('sign-in', {user: null, errors: null});
 };
@@ -179,7 +189,7 @@ exports.getAdminLogInForm = (req, res) => {
 
 exports.logInAdmin = (req, res) => {
     if(!req.user) res.redirect('/log-in');
-    
+
     console.log({your: req.body.adminCode, real: process.env.ADMIN_CODE});
     if(req.body.adminCode === process.env.ADMIN_CODE){
         let user = new User({
