@@ -44,17 +44,10 @@ app.use((req, res, next) => {
 app.use('/', indexRouter);
 
 
-// // creating page not found error
-// app.use(function(req, res, next) {
-//     const error = new Error('page not found!');
-//     error.status = 404;
-//     next(error);
-// });
-
 // rendering error page
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
-  console.log(err);
+  // console.log(err);
   res.locals.status = err.status;
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
