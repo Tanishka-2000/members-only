@@ -15,8 +15,9 @@
 </head>
 <body>
     <nav>
-      <li class="logo"><a href="/"><span class="material-symbols-outlined">house</span>Secrets</a></li>
+        <li class="logo"><a href="/"><span class="material-symbols-outlined">house</span>Secrets</a></li>
       <% if(currentUser) { %>
+          <p class="account"><span class="material-symbols-outlined">account_circle</span> <%= currentUser.firstName %></p>
           <li><a href="/log-out">Log Out</a></li>
       <% }else{ %>
           <li><a href="/log-in">Log In</a></li>

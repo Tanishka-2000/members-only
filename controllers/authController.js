@@ -44,7 +44,7 @@ exports.getStories = (req, res) => {
 };
 
 exports.getLogInForm = (req, res) => {
-    console.log(req.session.messages);
+    // console.log(req.session.messages);
     res.render('log-in', {errors: req.session.messages});
 };
 
@@ -120,7 +120,7 @@ exports.signInUser = [
 ];
 
 exports.getCreateStoryForm = (req, res) => {
-    console.log(req.user);
+    // console.log(req.user);
     if(req.user) res.render('compose');
     else res.redirect('/log-in');
 };
@@ -147,12 +147,30 @@ exports.deleteStory = (req, res) => {
 };
 
 exports.getMemberLogInForm = (req, res) => {
-    res.render('member-log-in');
-
+    if(req.member) console.log(req.member.error);
+    if(!req.user) res.redirect('/log-in');
+    else res.render('member-log-in');
 };
 
 exports.logInMember = (req, res) => {
-
+    if(!req.user) res.redirect('/log-in');
+    console.log({your: req.body.memberCode, real:process.env.MEMBER_CODE});
+    if(req.body.memberCode === process.env.MEMBER_CODE){
+        let user = new User({
+            firstName: req.user.firstName,
+            lastName: req.user.lastName,
+            username: req.user.username,
+            isMember: true,
+            isAdmin: req.user.isAdmin,
+            _id: req.user._id
+        });
+        User.findByIdAndUpdate(req.user._id, user, {}, (err, user) => {
+            res.redirect('/');
+        });
+    }else{
+        req.member.error = 'Incorrect Password!'
+        res.redirect('/member-log-in');
+    }
 };
 
 exports.getAdminLogInForm = (req, res) => {

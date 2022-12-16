@@ -12,8 +12,8 @@
           <p><%= message.msg %></p>
           <% if(currentUser && currentUser.isMember){ %>
               <div class="info">
-                <p><strong>Sarah Doe</strong></p>
-                <p><em>8th august 2022</em></p>
+                <p><strong><%= `${message.user.firstName} ${message.user.lastName}` %></strong></p>
+                <p><em><%= message.timestamp.toDateString() %></em></p>
               </div>
           <% } %>
            <% if(currentUser && currentUser.isAdmin){ %>
@@ -39,59 +39,4 @@
     </div>
   </div>
 
-  <div class="message">
-    <div class="image">
-      <img src="images/vacation2.jpg" alt="">
-    </div>
-    <div class="text">
-      <h2>Vacation</h2>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat, quo repudiandae. Consectetur quo quidem eligendi inventore, tempora atque. Facilis voluptas voluptates quibusdam impedit nisi distinctio illum s</p>
-      <div class="info">
-        <p><strong>Sarah Doe</strong></p>
-        <p><em>8th august 2022</em></p>
-      </div>
-      <a class='delete' href="/delete">delete</a>
-    </div>
-  </div>
-  <div class="message">
-    <div class="image">
-      <img src="images/vacation3.jpg" alt="">
-    </div>
-    <div class="text">
-      <h2>Vacation</h2>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat, quo repudiandae. Consectetur quo quidem eligendi inventore, tempora atque. Facilis voluptas voluptates quibusdam impedit nisi distinctio illum s</p>
-      <div class="info">
-        <p><strong>Sarah Doe</strong></p>
-        <p><em>8th august 2022</em></p>
-      </div>
-      <a class='delete' href="/delete">delete</a>
-    </div>
-  </div>
-  <div class="message">
-    <div class="image">
-      <img src="images/vacation4.jpg" alt="">
-    </div>
-    <div class="text">
-      <h2>Vacation</h2>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat, quo repudiandae. Consectetur quo quidem eligendi inventore, tempora atque. Facilis voluptas voluptates quibusdam impedit nisi distinctio illum s</p>
-      <div class="info">
-        <p><strong>Sarah Doe</strong></p>
-        <p><em>8th august 2022</em></p>
-      </div>
-      <a class='delete' href="/delete">delete</a>
-    </div>
-  </div>
-  <div class="message">
-    <div class="image">
-      <img src="images/vacation1.jpg" alt="">
-    </div>
-    <div class="text">
-      <h2>Vacation</h2>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat, quo repudiandae. Consectetur quo quidem eligendi inventore, tempora atque. Facilis voluptas voluptates quibusdam impedit nisi distinctio illum s</p>
-      <div class="info">
-        <p><strong>Sarah Doe</strong></p>
-        <p><em>8th august 2022</em></p>
-      </div>
-      <a class='delete' href="/delete">delete</a>
-    </div>
   </div> -->

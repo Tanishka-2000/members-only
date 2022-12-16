@@ -10,12 +10,20 @@ nav{
   padding: 10px 20%;
   font-size: 1.5rem;
   box-shadow: 0 2px 5px 3px #ddd;
+  color: #FF597B;
 }
 nav .logo{
   margin-right: auto;
 }
-nav .logo .material-symbols-outlined{
-  font-size: 2rem;
+nav .logo a,
+nav .account{
+    display: flex;
+    align-items: center;
+}
+
+nav .material-symbols-outlined{
+  font-size: 2.4rem;
+  margin-right: 4px;
 }
 nav li{
   list-style: none;
