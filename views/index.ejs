@@ -17,7 +17,9 @@
               </div>
           <% } %>
            <% if(currentUser && currentUser.isAdmin){ %>
-               <a class='delete' href=<%= `/story/${message._id}/delete` %>>delete</a>
+               <form class="no-border" action=<%= `/story/${message._id}/delete` %> method="post">
+                   <button type="submit">delete</button>
+               </form>
           <% } %>
         </div>
       </div>

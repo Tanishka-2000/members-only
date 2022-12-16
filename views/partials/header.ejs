@@ -18,7 +18,7 @@
         <li class="logo"><a href="/"><span class="material-symbols-outlined">house</span>Secrets</a></li>
       <% if(currentUser) { %>
           <p class="account"><span class="material-symbols-outlined">account_circle</span> <%= currentUser.firstName %></p>
-          <form class="log-out" action="/log-out" method="post">
+          <form class="no-border" action="/log-out" method="post">
               <button class="log-out" type="submit">Log Out</button>
           </form>
           <!-- <li><a href="/log-out">Log Out</a></li> -->

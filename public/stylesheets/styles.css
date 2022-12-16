@@ -37,7 +37,7 @@ nav li:not(.logo) a:hover{
   /* color: #FF8E9E; */
   text-decoration: underline;
 }
-form.log-out{
+form.no-border{
     border: none;
     width: 120px;
     margin: 0;

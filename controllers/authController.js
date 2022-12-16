@@ -153,7 +153,25 @@ exports.createStory = [
 ];
 
 exports.deleteStory = (req, res) => {
-
+    if(!req.user.isAdmin) res.redirect('/');
+    else{
+        Message.findById(req.params.id, (err, message) => {
+            if(err) return next(err);
+            if(message === null){
+                // No results.
+                const err = new Error("Message not found");
+                err.status = 404;
+                return next(err);
+            }
+            fs.unlink('./public/data/uploads/'+ message.img, () => {
+                console.log('image deleted');
+            });
+            Message.findByIdAndRemove(req.params.id, err => {
+                if(err) return next(err);
+                res.redirect('/');
+            });
+        });
+    }
 };
 
 exports.getMemberLogInForm = (req, res) => {
