@@ -123,7 +123,12 @@ exports.signInUser = [
             });
             user.save(user, (err) => {
                 if(err) next(err);
-                res.render('log-in',{errors:null} );
+                // log user in
+                req.login(user, function(err) {
+                    if (err) { return next(err); }
+                    return res.redirect('/');
+                  });
+                // res.redirect('/log-in');
             });
         });
     }
