@@ -123,7 +123,7 @@ exports.signInUser = [
             });
             user.save(user, (err) => {
                 if(err) next(err);
-                res.render('log-in');
+                res.render('log-in',{errors:null} );
             });
         });
     }
