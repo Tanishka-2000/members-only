@@ -156,9 +156,17 @@ button:hover{
 
 /* form style */
 .center{
+  width: 1200px;
   display:flex;
   flex-direction: column;
   align-items: center;
+}
+
+@media (width < 1240px) {
+  .center{
+    width: 100%;
+    padding: 0 20px;
+  }
 }
 .form-heading{
   text-align: center;
@@ -168,11 +176,12 @@ button:hover{
 form{
   width: 90%;
   padding: 30px 50px;
-  font-size: 1.5rem;
+  font-size: 1rem;
   border: 1px solid #FF597B;
   border-radius: 8px;
   margin: 20px 0;
 }
+
 form .form-group{
   width: 100%;
   margin: 20px 0;

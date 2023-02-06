@@ -24,6 +24,8 @@ app.set('view engine', 'ejs');
 // parse form data to js object
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
+
+// access static files
 app.use(express.static(path.join(__dirname, 'public')));
 
 // setting pasport midleware
