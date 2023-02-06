@@ -20,7 +20,7 @@ become the member of the clubhouse, you must have the secret passcode, and to sh
 + node: 16.15.1
 + express: ^4.18.2
 + ejs: ^3.1.8
-to see all packages, go to package.json file
+> to see all packages, go to package.json file
 
 ## Setup
 To run this project,
@@ -57,12 +57,16 @@ npm run dev
 Here is a working live demo: [https://members-only-p9vl.onrender.com](https://members-only-p9vl.onrender.com).
 
 ## Features
-+ home page shows all posts shared but not the author of any post.
++ Home page shows all posts shared but not the author of any post.
 + You need to be signed in share your post.
 + Only members of the clubhouse can see the author and date of each post shared.
 + To become a member you need to know the passcode and enter it in a secret route 'member-log-in'.
 + The admins of the clubhouse can not only see the author and date of the posts but can also delete any post.
 + To become an admin you need to know another passcode and enter it in a secret route 'admin-log-in'.
+
+### Secret Routes
++ Member login: [https://members-only-p9vl.onrender.com/member-log-in](https://members-only-p9vl.onrender.com/member-log-in).
++ Admin login: [https://members-only-p9vl.onrender.com/admin-log-in](https://members-only-p9vl.onrender.com/admin-log-in).
 
 ### Roles
 | Role  | See post |share post | See Author and date | delete Post |
