@@ -8,6 +8,8 @@ An exclusive clubhouse project that make use of passport.js to implement authent
 + [Setup](#setup)
 + [How to Use](#how-to-use)
 + [Demo](#demo)
++ [Features](#features)
++ [Liscence](#liscence)
 
 ## General info
 This project is a simple clubhouse where you can read and share anonymous posts. Anyone who visits the site can see
